@@ -8,12 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		8496EC4C259DAAFE0032E35C /* Toasty.h in Headers */ = {isa = PBXBuildFile; fileRef = 8496EC4A259DAAFE0032E35C /* Toasty.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8496EC54259DCA1C0032E35C /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496EC53259DCA1C0032E35C /* Toast.swift */; };
+		AE51C6C425A7616E00F8E4E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE51C6C325A7616E00F8E4E0 /* AppDelegate.swift */; };
+		AE51C6C625A7616E00F8E4E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE51C6C525A7616E00F8E4E0 /* SceneDelegate.swift */; };
+		AE51C6C825A7616E00F8E4E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE51C6C725A7616E00F8E4E0 /* ViewController.swift */; };
+		AE51C6CB25A7616E00F8E4E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE51C6C925A7616E00F8E4E0 /* Main.storyboard */; };
+		AE51C6CD25A7617100F8E4E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE51C6CC25A7617100F8E4E0 /* Assets.xcassets */; };
+		AE51C6D025A7617100F8E4E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE51C6CE25A7617100F8E4E0 /* LaunchScreen.storyboard */; };
+		AE51C6FF25A7665E00F8E4E0 /* Toasty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8496EC47259DAAFE0032E35C /* Toasty.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8496EC47259DAAFE0032E35C /* Toasty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Toasty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8496EC4A259DAAFE0032E35C /* Toasty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Toasty.h; sourceTree = "<group>"; };
 		8496EC4B259DAAFE0032E35C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8496EC53259DCA1C0032E35C /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		AE51C6C125A7616E00F8E4E0 /* ToastyDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToastyDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE51C6C325A7616E00F8E4E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AE51C6C525A7616E00F8E4E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		AE51C6C725A7616E00F8E4E0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AE51C6CA25A7616E00F8E4E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AE51C6CC25A7617100F8E4E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AE51C6CF25A7617100F8E4E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AE51C6D125A7617100F8E4E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -24,6 +41,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AE51C6BE25A7616E00F8E4E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE51C6FF25A7665E00F8E4E0 /* Toasty.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -31,7 +56,9 @@
 			isa = PBXGroup;
 			children = (
 				8496EC49259DAAFE0032E35C /* Toasty */,
+				AE51C6C225A7616E00F8E4E0 /* ToastyDemo */,
 				8496EC48259DAAFE0032E35C /* Products */,
+				AE51C6FE25A7665E00F8E4E0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -39,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				8496EC47259DAAFE0032E35C /* Toasty.framework */,
+				AE51C6C125A7616E00F8E4E0 /* ToastyDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,8 +76,30 @@
 			children = (
 				8496EC4A259DAAFE0032E35C /* Toasty.h */,
 				8496EC4B259DAAFE0032E35C /* Info.plist */,
+				8496EC53259DCA1C0032E35C /* Toast.swift */,
 			);
 			path = Toasty;
+			sourceTree = "<group>";
+		};
+		AE51C6C225A7616E00F8E4E0 /* ToastyDemo */ = {
+			isa = PBXGroup;
+			children = (
+				AE51C6C325A7616E00F8E4E0 /* AppDelegate.swift */,
+				AE51C6C525A7616E00F8E4E0 /* SceneDelegate.swift */,
+				AE51C6C725A7616E00F8E4E0 /* ViewController.swift */,
+				AE51C6C925A7616E00F8E4E0 /* Main.storyboard */,
+				AE51C6CC25A7617100F8E4E0 /* Assets.xcassets */,
+				AE51C6CE25A7617100F8E4E0 /* LaunchScreen.storyboard */,
+				AE51C6D125A7617100F8E4E0 /* Info.plist */,
+			);
+			path = ToastyDemo;
+			sourceTree = "<group>";
+		};
+		AE51C6FE25A7665E00F8E4E0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -84,15 +134,37 @@
 			productReference = 8496EC47259DAAFE0032E35C /* Toasty.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		AE51C6C025A7616E00F8E4E0 /* ToastyDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AE51C6E825A7617200F8E4E0 /* Build configuration list for PBXNativeTarget "ToastyDemo" */;
+			buildPhases = (
+				AE51C6BD25A7616E00F8E4E0 /* Sources */,
+				AE51C6BE25A7616E00F8E4E0 /* Frameworks */,
+				AE51C6BF25A7616E00F8E4E0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ToastyDemo;
+			productName = ToastyDemo;
+			productReference = AE51C6C125A7616E00F8E4E0 /* ToastyDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		8496EC3E259DAAFE0032E35C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1220;
 				LastUpgradeCheck = 1220;
 				TargetAttributes = {
 					8496EC46259DAAFE0032E35C = {
+						CreatedOnToolsVersion = 12.2;
+						LastSwiftMigration = 1220;
+					};
+					AE51C6C025A7616E00F8E4E0 = {
 						CreatedOnToolsVersion = 12.2;
 					};
 				};
@@ -111,6 +183,7 @@
 			projectRoot = "";
 			targets = (
 				8496EC46259DAAFE0032E35C /* Toasty */,
+				AE51C6C025A7616E00F8E4E0 /* ToastyDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -123,6 +196,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AE51C6BF25A7616E00F8E4E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE51C6D025A7617100F8E4E0 /* LaunchScreen.storyboard in Resources */,
+				AE51C6CD25A7617100F8E4E0 /* Assets.xcassets in Resources */,
+				AE51C6CB25A7616E00F8E4E0 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -130,10 +213,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8496EC54259DCA1C0032E35C /* Toast.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AE51C6BD25A7616E00F8E4E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE51C6C825A7616E00F8E4E0 /* ViewController.swift in Sources */,
+				AE51C6C425A7616E00F8E4E0 /* AppDelegate.swift in Sources */,
+				AE51C6C625A7616E00F8E4E0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		AE51C6C925A7616E00F8E4E0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AE51C6CA25A7616E00F8E4E0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AE51C6CE25A7617100F8E4E0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AE51C6CF25A7617100F8E4E0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		8496EC4D259DAAFE0032E35C /* Debug */ = {
@@ -188,7 +301,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -246,7 +359,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -261,6 +374,7 @@
 		8496EC50259DAAFE0032E35C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = XDKADKE54K;
@@ -269,6 +383,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Toasty/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -277,6 +392,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yangjie.Toasty;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -285,6 +402,7 @@
 		8496EC51259DAAFE0032E35C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = XDKADKE54K;
@@ -293,6 +411,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Toasty/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -301,6 +420,47 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yangjie.Toasty;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AE51C6E925A7617200F8E4E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XDKADKE54K;
+				INFOPLIST_FILE = ToastyDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.yangjie.ToastyDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AE51C6EA25A7617200F8E4E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XDKADKE54K;
+				INFOPLIST_FILE = ToastyDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.yangjie.ToastyDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -323,6 +483,15 @@
 			buildConfigurations = (
 				8496EC50259DAAFE0032E35C /* Debug */,
 				8496EC51259DAAFE0032E35C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AE51C6E825A7617200F8E4E0 /* Build configuration list for PBXNativeTarget "ToastyDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE51C6E925A7617200F8E4E0 /* Debug */,
+				AE51C6EA25A7617200F8E4E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
