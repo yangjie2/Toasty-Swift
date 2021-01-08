@@ -9,6 +9,7 @@ Pod::Spec.new do |s|
     s.source           = { :git => 'https://github.com/yangjie2/Toasty.git', :tag => s.version.to_s }
 
     s.platform     = :ios, '9.0'    
+    s.swift_version = '4.2'
     s.frameworks   = 'UIKit', 'Foundation'
 
     s.source_files = "Toasty/*.{swift, h}"
