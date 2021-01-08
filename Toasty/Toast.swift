@@ -21,9 +21,9 @@ public class ToastCenter {
     /**
      Enables or disables queueing behavior for toast views. When `true`,
      toast views will appear one after the other. When `false`,
-     only the last requested toast will be shown. Default is `true`.
+     only the last requested toast will be shown. Default is `false`.
      */
-    public var isQueueEnabled = true
+    public var isQueueEnabled = false
     
     
     
@@ -35,18 +35,20 @@ public class ToastCenter {
     
     private init() {}
     
+    /**
+     cancel all toast in queue
+     */
+    public func cancelAll() {
+        queue.cancelAllOperations()
+    }
     
-    public func add(toast: Toast) {
+    
+    fileprivate func add(toast: Toast) {
         if !isQueueEnabled {
             cancelAll()
         }
         queue.addOperation(toast)
     }
-    
-    public func cancelAll() {
-        queue.cancelAllOperations()
-    }
-    
 }
 
 // MARK: - ToastPosition
@@ -133,11 +135,6 @@ public struct ToastStyle {
     public var shadowOffset = CGSize(width: 4.0, height: 4.0)
     
     /**
-     The duration toast show. Default is 2.5.
-     */
-    public var duration: TimeInterval = 2.5
-    
-    /**
      vision accessibility
      */
     public var supportVisionAccessibility: Bool = true
@@ -148,6 +145,11 @@ public struct ToastStyle {
   toast operation
  */
 public class Toast : Operation {
+    
+    /**
+     The duration toast show. Default is 2.5.
+     */
+    public var duration: TimeInterval
     
     /**
      define the look for toast view
@@ -197,11 +199,12 @@ public class Toast : Operation {
     
     
     //MARK: Initializing
-    public init(text: String, position: ToastPosition = .bottom, superView: UIView?, style: ToastStyle = ToastStyle()) {
-        self.text = text;
-        self.position = position;
-        self.superView = superView;
-        self.style = style;
+    public init(text: String, position: ToastPosition = .bottom, duration: TimeInterval = 2.5, superView: UIView?, style: ToastStyle = ToastStyle()) {
+        self.text = text
+        self.position = position
+        self.duration = duration
+        self.superView = superView
+        self.style = style
         super.init()
     }
     
@@ -221,25 +224,24 @@ public class Toast : Operation {
     
     public override func start() {
         let isRunnable = !self.isFinished && !self.isCancelled && !self.isExecuting
-        guard isRunnable else { return }
+        if !isRunnable {
+            return
+        }
         self.main()
     }
     
     public override func main() {
         self.isExecuting = true
-        if text.isEmpty || superView == nil {
+        if text.isEmpty {
             return
         }
         performInMainThread {
-            guard let toastview = self.createToastView() else {
+            guard let toastview = self.createToastView(), let superview = self.superView else {
                 return
             }
             self.toastView = toastview
-            self.superView?.addSubview(toastview)
-            let point = self.centerPoint(toastSize: toastview.frame.size, superview: self.superView)
-            if point.equalTo(.zero) {
-                return
-            }
+            superview.addSubview(toastview)
+            let point = self.centerPoint(toastSize: toastview.frame.size, superview: superview)
             toastview.center = point
             toastview.alpha = 0
             UIView.animate(withDuration: 0.3, delay: 0, options: .beginFromCurrentState) {
@@ -252,7 +254,7 @@ public class Toast : Operation {
                     UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, self.text)
                     #endif
                 }
-                UIView.animate(withDuration: self.style.duration) {
+                UIView.animate(withDuration: self.duration) {
                     toastview.alpha = 1.0001
                 } completion: { (completed) in
                     self.finish()
@@ -300,20 +302,17 @@ public class Toast : Operation {
         return view
     }
     
-    private func centerPoint(toastSize: CGSize, superview: UIView?) -> CGPoint {
-        guard let superView = superview else {
-            return .zero
-        }
-        let topPadding: CGFloat = style.textInsets.top + superView.toasty_safeAreaInsets.top
-        let bottomPadding: CGFloat = style.textInsets.bottom + superView.toasty_safeAreaInsets.bottom
+    private func centerPoint(toastSize: CGSize, superview: UIView) -> CGPoint {
+        let topPadding: CGFloat = style.textInsets.top + superview.toasty_safeAreaInsets.top
+        let bottomPadding: CGFloat = style.textInsets.bottom + superview.toasty_safeAreaInsets.bottom
         
         switch position {
         case .top:
-            return CGPoint(x: superView.bounds.size.width / 2.0, y: (toastSize.height / 2.0) + topPadding)
+            return CGPoint(x: superview.bounds.size.width / 2.0, y: (toastSize.height / 2.0) + topPadding)
         case .center:
-            return CGPoint(x: superView.bounds.size.width / 2.0, y: superView.bounds.size.height / 2.0)
+            return CGPoint(x: superview.bounds.size.width / 2.0, y: superview.bounds.size.height / 2.0)
         case .bottom:
-            return CGPoint(x: superView.bounds.size.width / 2.0, y: (superView.bounds.size.height - (toastSize.height / 2.0)) - bottomPadding)
+            return CGPoint(x: superview.bounds.size.width / 2.0, y: (superview.bounds.size.height - (toastSize.height / 2.0)) - bottomPadding)
         }
     }
     
@@ -334,12 +333,23 @@ public class Toast : Operation {
     
 }
 
-extension UIView {
-    var toasty_safeAreaInsets: UIEdgeInsets {
+
+/**
+ UIView Extention
+ */
+public extension UIView {
+    fileprivate var toasty_safeAreaInsets: UIEdgeInsets {
         if #available(iOS 11.0, *) {
             return self.safeAreaInsets
         } else {
             return .zero
         }
+    }
+    
+    /**
+     show toast on the view
+     */
+    func makeToast(text: String, position: ToastPosition = .bottom, duration: TimeInterval = 2.5, style: ToastStyle = ToastStyle()) {
+        Toast(text: text, position: position, duration: duration, superView: self, style: style).show()
     }
 }
