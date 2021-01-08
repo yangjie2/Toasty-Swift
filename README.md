@@ -16,7 +16,7 @@ iOS 9 +
 ### CocoaPods
 
 ```
-pod 'Toasty'
+pod 'Toasty-Swift'
 ```
 
 # Getting Started
