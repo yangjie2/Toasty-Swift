@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-    s.name             = 'Toasty'
+    s.name             = 'Toasty-Swift'
     s.version          = '1.0.0'
     s.summary          = 'A toast framework with swift for iOS.'
 
