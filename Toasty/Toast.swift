@@ -23,16 +23,7 @@ public class ToastCenter {
      toast views will appear one after the other. When `false`,
      only the last requested toast will be shown. Default is `false`.
      */
-    public var isQueueEnabled = false {
-        willSet {
-            print("will set isQueueEnabled: ", newValue)
-            if newValue {
-                queue.maxConcurrentOperationCount = 1;
-            }else {
-                queue.maxConcurrentOperationCount = 1000;
-            }
-        }
-    }
+    public var isQueueEnabled = false
     
     
     
@@ -53,6 +44,9 @@ public class ToastCenter {
     
     
     fileprivate func add(toast: Toast) {
+        if !isQueueEnabled {
+            cancelAll();
+        }
         queue.addOperation(toast)
     }
 }
