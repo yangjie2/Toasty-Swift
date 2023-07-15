@@ -18,11 +18,11 @@ class ViewController: UIViewController {
         button.sizeToFit()
         button.addTarget(self, action: #selector(self.showButtonTouchUpInside), for: .touchUpInside)
         button.autoresizingMask = [.flexibleBottomMargin, .flexibleLeftMargin, .flexibleRightMargin]
-        button.center = CGPoint(x: view.center.x, y: 75)
+        button.center = CGPoint(x: view.center.x, y: 205)
         self.view.addSubview(button)
         
         //Toast
-        ToastCenter.default.isQueueEnabled = false
+        ToastCenter.default.isQueueEnabled = true
     }
 
 
@@ -31,6 +31,7 @@ class ViewController: UIViewController {
         
         Toast(text: text,position: .center, superView: self.view).show()
         self.view.makeToast(text: "view extention make toast!",position: .top)
+        self.view.makeToast(text: "view extention make toast at bottom!",position: .bottom)
     }
 }
 
