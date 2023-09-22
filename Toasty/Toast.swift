@@ -10,12 +10,14 @@ import Foundation
 
 public class ToastCenter : NSObject {
     
-    public static let `default` = ToastCenter()
+    @objc
+    public static let `defaultCenter` = ToastCenter()
     
     /**
      If this value is `true` and the user is using VoiceOver,
      VoiceOver will announce the text in the toast when `ToastView` is displayed.
     */
+    @objc
     public var supportVisionAccessibility: Bool = true
     
     /**
@@ -23,6 +25,7 @@ public class ToastCenter : NSObject {
      toast views will appear one after the other. When `false`,
      only the last requested toast will be shown. Default is `false`.
      */
+    @objc
     public var isQueueEnabled = false
     
     
@@ -33,11 +36,12 @@ public class ToastCenter : NSObject {
         return queue
     }()
     
-    private init() {}
+    private override init() {}
     
     /**
      cancel all toast in queue
      */
+    @objc
     public func cancelAll() {
         queue.cancelAllOperations()
     }
@@ -52,7 +56,8 @@ public class ToastCenter : NSObject {
 }
 
 // MARK: - ToastPosition
-public enum ToastPosition {
+@objc
+public enum ToastPosition: Int {
     case top
     case center
     case bottom
@@ -60,29 +65,36 @@ public enum ToastPosition {
 
 
 // MARK: - Toast Style
-public struct ToastStyle {
+public class ToastStyle : NSObject {
 
-    public init() {}
+    @objc
+    public static let `defaultStyle` = ToastStyle()
+    
+    public override init() {}
     
     /**
      The background color. Default is `white 0` at 70% opacity.
     */
+    @objc
     public var backgroundColor: UIColor = UIColor(white: 0, alpha: 0.7)
     
     /**
      The text color. Default is `.white`.
     */
+    @objc
     public var textColor: UIColor = .white
     
     /**
      The text font. Default is `.systemFont(ofSize: 14.0)`.
     */
+    @objc
     public var textFont: UIFont = .systemFont(ofSize: 14)
     
     /**
      A ratio value from 0.0 to 1.0, representing the maximum width of the toast
      view relative to it's superview. Default is 0.7 (70% of the superview's width).
     */
+    @objc
     public var maxWidthRatio: CGFloat = 0.7 {
         didSet {
             maxWidthRatio = max(min(maxWidthRatio, 1.0), 0.0)
@@ -92,32 +104,38 @@ public struct ToastStyle {
     /**
      The inset of the text.
      */
-    public var textInsets = UIEdgeInsets(top: 6, left: 10, bottom: 6, right: 10)
+    @objc
+    public var textInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
     
     /**
      The corner radius. Default is 5.0.
     */
+    @objc
     public var cornerRadius: CGFloat = 5.0;
     
     /**
-     The text alignment. Default is `NSTextAlignment.Left`.
+     The text alignment. Default is `NSTextAlignment.center`.
     */
-    public var textAlignment: NSTextAlignment = .left
+    @objc
+    public var textAlignment: NSTextAlignment = .center
     
     /**
      Enable or disable a shadow on the toast view. Default is `false`.
     */
+    @objc
     public var displayShadow = false
     
     /**
      The shadow color. Default is `.black`.
      */
+    @objc
     public var shadowColor: UIColor = .black
     
     /**
      A value from 0.0 to 1.0, representing the opacity of the shadow.
      Default is 0.7 (70% opacity).
     */
+    @objc
     public var shadowOpacity: Float = 0.7 {
         didSet {
             shadowOpacity = max(min(shadowOpacity, 1.0), 0.0)
@@ -127,16 +145,19 @@ public struct ToastStyle {
     /**
      The shadow radius. Default is 5.0
     */
+    @objc
     public var shadowRadius: CGFloat = 5.0
     
     /**
      The shadow offset. The default is 4 x 4.
     */
+    @objc
     public var shadowOffset = CGSize(width: 4.0, height: 4.0)
     
     /**
      vision accessibility
      */
+    @objc
     public var supportVisionAccessibility: Bool = true
 }
 
@@ -144,27 +165,32 @@ public struct ToastStyle {
 /**
   toast operation
  */
+@objc
 public class Toast : Operation {
     
     /**
      The duration toast show. Default is 2.5.
      */
+    @objc
     public var duration: TimeInterval
     
     /**
      define the look for toast view
      */
+    @objc
     public var style: ToastStyle
     
     /**
      define the position of toast view.
      Default is `.bottom`.
      */
+    @objc
     public var position: ToastPosition
     
     /**
      text to show
      */
+    @objc
     public var text:String
     
     
@@ -199,6 +225,7 @@ public class Toast : Operation {
     
     
     //MARK: Initializing
+    @objc
     public init(text: String, position: ToastPosition = .bottom, duration: TimeInterval = 2.5, superView: UIView?, style: ToastStyle = ToastStyle()) {
         self.text = text
         self.position = position
@@ -207,11 +234,11 @@ public class Toast : Operation {
         self.style = style
         super.init()
     }
-    
+    @objc
     public func show() {
-        ToastCenter.default.add(toast: self)
+        ToastCenter.defaultCenter.add(toast: self)
     }
-    
+    @objc
     public override func cancel() {
         super.cancel()
         finish()
@@ -221,7 +248,7 @@ public class Toast : Operation {
     
     
     //MARK: Override
-    
+    @objc
     public override func start() {
         let isRunnable = !self.isFinished && !self.isCancelled && !self.isExecuting
         if !isRunnable {
@@ -229,7 +256,7 @@ public class Toast : Operation {
         }
         self.main()
     }
-    
+    @objc
     public override func main() {
         self.isExecuting = true
         if text.isEmpty {
@@ -294,8 +321,7 @@ public class Toast : Operation {
         textLabel.lineBreakMode = .byTruncatingTail
         textLabel.textColor = style.textColor
         textLabel.backgroundColor = .clear
-        let constraintSize = CGSize(width: superRect.size.width*style.maxWidthRatio, height: superRect.size.height*style.maxWidthRatio)
-        let textSize = textLabel.sizeThatFits(constraintSize)
+        let textSize = textLabel.sizeThatFits(CGSize(width: superRect.size.width*style.maxWidthRatio, height: superRect.size.height*style.maxWidthRatio));
         view.frame = CGRect(x: 0, y: 0, width: textSize.width + style.textInsets.left + style.textInsets.right, height: textSize.height + style.textInsets.top + style.textInsets.bottom)
         view.addSubview(textLabel)
         textLabel.frame = CGRect(x: style.textInsets.left, y: style.textInsets.top, width: textSize.width, height: textSize.height)
@@ -326,7 +352,7 @@ public class Toast : Operation {
         }
     }
     
-    func finish() {
+    private func finish() {
       self.isExecuting = false
       self.isFinished = true
     }
@@ -337,6 +363,7 @@ public class Toast : Operation {
 /**
  UIView Extention
  */
+@objc
 public extension UIView {
     fileprivate var toasty_safeAreaInsets: UIEdgeInsets {
         if #available(iOS 11.0, *) {
@@ -349,7 +376,11 @@ public extension UIView {
     /**
      show toast on the view
      */
-    func makeToast(text: String, position: ToastPosition = .bottom, duration: TimeInterval = 2.5, style: ToastStyle = ToastStyle()) {
-        Toast(text: text, position: position, duration: duration, superView: self, style: style).show()
+    func makeToast(text: String, position: ToastPosition = .bottom, duration: TimeInterval = 2.5, style: ToastStyle? = nil) {
+        if let sty = style {
+            Toast(text: text, position: position, duration: duration, superView: self, style: sty).show()
+        }else {
+            Toast(text: text, position: position, duration: duration, superView: self, style: ToastStyle.defaultStyle).show()
+        }
     }
 }
