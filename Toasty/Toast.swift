@@ -8,7 +8,7 @@
 import UIKit
 import Foundation
 
-public class ToastCenter {
+public class ToastCenter : NSObject {
     
     public static let `default` = ToastCenter()
     
